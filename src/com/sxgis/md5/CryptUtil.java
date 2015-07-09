@@ -1,4 +1,4 @@
-package com.sxgis;
+package com.sxgis.md5;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
