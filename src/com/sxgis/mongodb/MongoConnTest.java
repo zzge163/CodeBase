@@ -16,11 +16,11 @@ public class MongoConnTest {
 
 	public static void main(String[] args) throws UnknownHostException {
 		// 方式一：直接连接单一mongodb服务器（注意这种方式不会自动发现mongodb集群中的主服务器）
-		MongoClient mongoClient = new MongoClient();
+//		MongoClient mongoClient = new MongoClient();
 		// // 方式二（指定ip）：
 		// MongoClient mongoClient = new MongoClient( "localhost" );
 		// // 方式二（指定ip、端口）：
-		// MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		 MongoClient mongoClient = new MongoClient( "localhost" , 3333 );
 		// // 方式三：连接到mongodb服务器集群（会自动发现主服务器）
 		// MongoClient mongoClient = new MongoClient(Arrays.asList(new
 		// ServerAddress("localhost", 27017),
@@ -28,6 +28,8 @@ public class MongoConnTest {
 		// new ServerAddress("localhost", 27019)));
 
 		DB db = mongoClient.getDB("test");
+//		db.getMongo().slaveOk();
+		db.slaveOk();
 
 		// 2、安全验证
 		// boolean auth = db.authenticate(myUserName, myPassword);
@@ -41,28 +43,28 @@ public class MongoConnTest {
 		}
 
 		// 4、获取单一集合
-		DBCollection coll = db.getCollection("sxgis_java");
+		DBCollection coll = db.getCollection("person");
 
 		// 5、设置 write concern
 		mongoClient.setWriteConcern(WriteConcern.JOURNALED);
 
 		// 6、增加文档（类似向数据库中增加一条记录）
-		System.out.println("5、增加文档（类似向数据库中增加一条记录）-------------");
-		BasicDBObject doc = new BasicDBObject("name", "MongoDB")
-				.append("type", "database").append("count", 1)
-				.append("info", new BasicDBObject("x", 203).append("y", 102));
-		coll.insert(doc);
+//		System.out.println("5、增加文档（类似向数据库中增加一条记录）-------------");
+//		BasicDBObject doc = new BasicDBObject("name", "MongoDB")
+//				.append("type", "database").append("count", 1)
+//				.append("info", new BasicDBObject("x", 203).append("y", 102));
+//		coll.insert(doc);
 
 		// 7、findOne()方法：查找集合中的第一个文档
 		DBObject myDoc = coll.findOne();
 		System.out.println(myDoc);
 
 		// 8、添加多条文档
-		System.out.println("8、查询集合中文档总个数-------------");
-		for (int i = 0; i < 10; i++) {
-			coll.insert(new BasicDBObject("i", i));
-		}
-		System.out.println(coll.getCount());
+//		System.out.println("8、查询集合中文档总个数-------------");
+//		for (int i = 0; i < 10; i++) {
+//			coll.insert(new BasicDBObject("i", i));
+//		}
+//		System.out.println(coll.getCount());
 
 		// 9、使用游标查询所有文档
 		System.out.println("9、使用游标查询所有文档-------------");
