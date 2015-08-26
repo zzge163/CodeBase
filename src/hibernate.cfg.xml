@@ -47,8 +47,8 @@
 		<!--<mapping class="com.sxgis.hibernate.bean.bi_1_1.Address" /> -->
 
 		<!-- two 1-n -->
-		<!--<mapping class="com.sxgis.hibernate.bean.bi_1_n.Person" /> -->
-		<!--<mapping class="com.sxgis.hibernate.bean.bi_1_n.Address" /> -->
+		<mapping class="com.sxgis.hibernate.bean.bi_1_n.Person" /> 
+		<mapping class="com.sxgis.hibernate.bean.bi_1_n.Address" /> 
 
 		<!-- two n-n -->
 		<!--<mapping class="com.sxgis.hibernate.bean.bi_n_n.Person" /> -->
